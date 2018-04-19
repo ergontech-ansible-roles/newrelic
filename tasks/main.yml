@@ -1,53 +1,17 @@
 ---
 
-- name: Adding APT key
-  become: yes
-  apt_key:
-    url: https://download.newrelic.com/548C16BF.gpg
+# @docs https://docs.newrelic.com/docs/agents/php-agent/installation/php-agent-installation-ubuntu-debian
+
+- debug: var=install_newrelic
+
+- include: install.yml
+  when: install_newrelic == true
   tags:
     - newrelic
 
-- name: Add apt repository
-  become: yes
-  apt_repository:
-    repo: "deb https://apt.newrelic.com/debian/ newrelic non-free"
-    update_cache: yes
+- include: configure.yml
+  when: install_newrelic == true
   tags:
-    - newrelic
-
-- name: Ensure New Relic PHP is installed
-  become: yes
-  apt:
-    pkg: newrelic-php5
-    state: present
-  tags:
-    - newrelic
-
-- name: Configuring New Relic for cli
-  become: yes
-  template:
-    src: templates/newrelic.ini.j2
-    dest: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
-    owner: root
-    group: root
-    mode: 0644
-  notify:
-    - restart new relic daemon
-  tags:
-    - newrelic
-
-- name: Configuring New Relic for fpm
-  become: yes
-  template:
-    src: templates/newrelic.ini.j2
-    dest: "/etc/php/{{ php_version }}/fpm/conf.d/20-newrelic.ini"
-    owner: root
-    group: root
-    mode: 0644
-  notify:
-    - restart new relic daemon
-    - restart fpm
-  tags:
-    - newrelic
+   - newrelic
 
 

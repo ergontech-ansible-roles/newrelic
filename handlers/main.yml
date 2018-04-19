@@ -1,6 +1,6 @@
 ---
 
-- name: restart new relic daemon
+- name: restart newrelic daemon
   service:
     name: newrelic-daemon
   state: restarted

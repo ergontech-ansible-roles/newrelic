@@ -1,0 +1,28 @@
+---
+
+- name: Configuring New Relic for cli
+  become: yes
+  template:
+    src: templates/newrelic.ini.j2
+    dest: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
+    owner: newrelic
+    mode: 0644
+  notify:
+    - restart newrelic daemon
+
+- name: Configuring New Relic for fpm
+  become: yes
+  template:
+    src: templates/newrelic.ini.j2
+    dest: "/etc/php/{{ php_version }}/fpm/conf.d/20-newrelic.ini"
+    owner: newrelic
+    mode: 0644
+  notify:
+    - restart newrelic daemon
+
+# Going to do it this way so dependencies on specific handlers is kept at a miniumum
+- name: Restart PHP-FPM
+  become: yes
+  service:
+    name: "php{{ php_version }}-fpm"
+    state: restarted
