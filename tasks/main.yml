@@ -2,15 +2,18 @@
 
 # @docs https://docs.newrelic.com/docs/agents/php-agent/installation/php-agent-installation-ubuntu-debian
 
-- debug: var=install_newrelic
+- name: Skip install install_newrelic is false
+  fail:
+    msg: install_newrelic var is set to false
+  when: install_newrelic == false
+  tags:
+    - newrelic
 
 - include: install.yml
-  when: install_newrelic == true
   tags:
     - newrelic
 
 - include: configure.yml
-  when: install_newrelic == true
   tags:
    - newrelic
 

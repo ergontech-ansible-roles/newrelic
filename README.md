@@ -29,14 +29,13 @@ Dependencies
 PHP
 PHP-FPM
 
-
 Use Role
 ----------------
 
 ```
 # requirments.yml
 
-- src: https://github.com/ergontech-ansible-roles/newrelic-role
+- src: https://github.com/ergontech-ansible-roles/newrelic
   version: master
   name: newrelic
 ```
