@@ -1,0 +1,7 @@
+---
+
+- name: Mark deployment in new relic
+  newrelic_deployment:
+    token: "{{ newrelic_api_key }}"
+    application_id: "{{ newrelic_app_id }}"
+    revision: "{{ revision | default('') }}"
