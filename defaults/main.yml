@@ -4,7 +4,7 @@
 # Defaults
 #
 newrelic_agent_appname: Default Application
-install_newrelic: false
+newrelic_enabled: false
 
 #
 # Variables used by newrelic.ini.j2 template

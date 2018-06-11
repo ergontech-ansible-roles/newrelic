@@ -3,4 +3,4 @@
 - name: restart newrelic daemon
   service:
     name: newrelic-daemon
-  state: restarted
+    state: restarted

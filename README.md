@@ -15,11 +15,11 @@ php_version: 5.6
 newrelic_license_key: asdf
 
 # staging
-install_newrelic: true
+newrelic_enabled: true
 newrelic_agent_appname: Staging App
 
 # production
-install_newrelic: true
+newrelic_enabled: true
 newrelic_agent_appname: Production App
 ```
 

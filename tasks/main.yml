@@ -3,12 +3,12 @@
 # @docs https://docs.newrelic.com/docs/agents/php-agent/installation/php-agent-installation-ubuntu-debian
 
 - include: install.yml
-  when: install_newrelic
+  when: newrelic_enabled
   tags:
     - newrelic
 
 - include: configure.yml
-  when: install_newrelic
+  when: newrelic_enabled
   tags:
    - newrelic
 
