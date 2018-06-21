@@ -1,6 +1,7 @@
 ---
 
 - name: restart newrelic daemon
+  become: yes
   service:
     name: newrelic-daemon
     state: restarted
