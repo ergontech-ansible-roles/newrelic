@@ -1,9 +1,5 @@
 ---
 
-#
-# Defaults
-#
-newrelic_agent_appname: Default Application
 newrelic_enabled: false
 
 #
