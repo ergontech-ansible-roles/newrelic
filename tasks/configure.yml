@@ -1,19 +1,10 @@
 ---
 
-- name: Configuring New Relic for cli
+- name: Configuring New Relic
   become: yes
   template:
     src: templates/newrelic.ini.j2
     dest: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
-    mode: 0644
-  notify:
-    - restart newrelic daemon
-
-- name: Configuring New Relic for fpm
-  become: yes
-  template:
-    src: templates/newrelic.ini.j2
-    dest: "/etc/php/{{ php_version }}/fpm/conf.d/20-newrelic.ini"
     mode: 0644
   notify:
     - restart newrelic daemon
